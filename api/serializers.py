@@ -33,25 +33,25 @@ class Loginserializer(serializers.ModelSerializer):
 
 
 class Productserializer(serializers.HyperlinkedModelSerializer):
-    
     class Meta:
         model = Product
         fields = ['id','title', 'image', 'name', 'brand', 'price', 'in_stocks']
 
+    
 class Cartserializer(serializers.ModelSerializer):
-    # price = Productserializer('price')
-
     class Meta:
         model = Cart
         fields = ['id', 'user', 'product', 'price', 'quantity', 'status', 'is_active']
-        read_only_fields = ('user', 'price')
+        read_only_fields = ('user', 'price','is_active')
 
-    # def update(self, instance, validated_data):
-    #     price = validated_data.pop('price')
-    #     instance.price = validated_data.get('', instance.other_prefs)
-        
-        
+
 class Orderserializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = ['user', 'order_items', 'order_status', 'order_price', 'tax_price', 'order_time']
+
+class Wishlistserializer(serializers.ModelSerializer):
+    class Meta:
+        model = Wish
+        fields = ['user', 'favourite']
+        read_only_fields = ('user',)
