@@ -84,8 +84,8 @@ class Usercart(viewsets.ModelViewSet):
     #http_method_names = ['patch', 'put', 'get', 'post']
 
     def perform_create(self, serializer):
-        
-        serializer.save(user=self.request.user)
+        product = Product.objects.get(id = int(self.request.data['product']))
+        serializer.save(user=self.request.user, price = product.price * int(self.request.data['quantity']))
 
     
 class Customer_detail(viewsets.ModelViewSet):
