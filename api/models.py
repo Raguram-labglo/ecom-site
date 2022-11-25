@@ -42,6 +42,6 @@ class Wish(models.Model):
     wished = models.BooleanField(default=True)
 
 class Paymets(models.Model):
-    order = models.ManyToManyField(Order)
+    order = models.ForeignKey(Order,null = True, on_delete=models.CASCADE)
     transaction_id = models.CharField(max_length = 200)
-    payment_satus = models.CharField(max_length = 200)
+    payment_satus = models.CharField(max_length = 200, default = 'pending')
