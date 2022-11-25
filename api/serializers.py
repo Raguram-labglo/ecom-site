@@ -45,7 +45,8 @@ class Cartserializer(serializers.ModelSerializer):
         read_only_fields = ('user', 'price','is_active')
 
 
-class Orderserializer(serializers.HyperlinkedModelSerializer):
+class Orderserializer(serializers.ModelSerializer):
+    #order_items = Cartserializer()
     class Meta:
         model = Order
         fields = ['user', 'order_items', 'order_status', 'order_price', 'tax_price', 'order_time']
